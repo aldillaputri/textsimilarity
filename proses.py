@@ -26,20 +26,20 @@ def filtering(x):
     filtered_word = [i for i in x if not i in sw]
     return filtered_word
 
-# def stemming(x):
-#     stemmer = StemmerFactory()
-#     smw = stemmer.create_stemmer()
-#     temp = []
-#     for i in x:
-#         temp.append(smw.stem(i))
-#     return temp
+def stemming(x):
+    stemmer = StemmerFactory()
+    smw = stemmer.create_stemmer()
+    temp = []
+    for i in x:
+        temp.append(smw.stem(i))
+    return temp
 
 def proses_input(text): 
     input = text
     hasil = case_folding(input)
     hasil = tokenizing(hasil)
     hasil = filtering(hasil)
-    # hasil = stemming(hasil)
+    hasil = stemming(hasil)
     hasil = ' '.join(hasil)
     return [hasil]
 
@@ -53,7 +53,7 @@ def proses_data(text):
         hasil = case_folding(i)
         hasil = tokenizing(hasil)
         hasil = filtering(hasil)
-        # hasil = stemming(hasil)
+        hasil = stemming(hasil)
         hasil = ' '.join(hasil)
         X.append(hasil)
     
