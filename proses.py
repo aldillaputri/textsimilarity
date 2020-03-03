@@ -9,7 +9,7 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from scipy import spatial
 
 def case_folding(x):
     case_fold = x.lower()
@@ -61,7 +61,8 @@ def proses_data(text):
 
 
     Y = vectorizer.transform(proses_input(text))
-    similarity = np.sum(X.toarray() * Y.toarray(), axis=1)
+    # similarity = np.sum(X.toarray() * Y.toarray(), axis=1)
+    similarity = 1 - spatial.distance.cosine(X.toarray(), Y.toarray())
 
     print(similarity)
     val = np.max(similarity)
