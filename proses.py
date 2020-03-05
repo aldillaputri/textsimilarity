@@ -61,7 +61,6 @@ def proses_data(text):
 
 
     Y = vectorizer.transform(proses_input(text))
-    # similarity = np.sum(X.toarray() * Y.toarray(), axis=1)
     similarity = 1 - spatial.distance.cosine(X.toarray(), Y.toarray())
 
     print(similarity)
